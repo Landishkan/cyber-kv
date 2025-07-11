@@ -1,6 +1,4 @@
-﻿/* Базовые стили */
-/* Обновленные базовые стили */
-/* Убираем все 3D-трансформации и упрощаем анимации */
+
 :root {
     --primary-color: #0f4cff;
     --primary-light: #3a6bff;
@@ -24,7 +22,181 @@ body {
     line-height: 1.7;
     overflow-x: hidden;
 }
+/*  анимации*/
+.main-content {
+    animation: fadeInUp 0.8s ease-out;
+}
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* стили для навигационной панели*/ 
+.header-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.nav-button {
+    padding: 12px 20px;
+    background: rgba(143, 184, 237, 0.1);
+    border: 1px solid var(--secondary-color);
+    border-radius: 6px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-button:hover {
+    background: rgba(143, 184, 237, 0.2);
+    transform: translateY(-2px);
+}
+
+.nav-button:active {
+    transform: translateY(1px);
+}
+
+.nav-button i {
+    font-size: 1.2rem;
+}
+
+/* Специальный стиль для кнопки авторизации */
+.nav-button.auth-button {
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-light));
+    border: none;
+}
+
+/* Анимация подчеркивания при наведении */
+.nav-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-button:hover::after {
+    width: 100%;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .header-nav {
+        gap: 8px;
+    }
+    
+    .nav-button {
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
+}
+/* для новостей*/ 
+.news-section {
+    margin-top: 50px;
+    padding: 30px;
+    background: rgba(10, 10, 32, 0.7);
+    border-radius: 12px;
+    border-top: 3px solid var(--accent-color);
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), transparent);
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.news-card {
+    background: var(--background-light);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+}
+
+.news-card h3 {
+    color: var(--secondary-color);
+    margin: 10px 0;
+}
+
+.news-date {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+.view-all-news {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.view-all-news:hover {
+    text-decoration: underline;
+    transform: translateX(5px);
+}
+
+.coming-soon {
+    position: relative;
+    opacity: 0.8;
+}
+
+.coming-soon::after {
+    content: "в разработке";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--error-color);
+    color: white;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+}
 /* Упрощённая анимация фона */
 body::before {
     content: '';
@@ -61,7 +233,23 @@ a, button, .cyber-button, .scenario-button, .read-more {
 a:visited {
     color: inherit;
 }
-
+/* Адаптация для мобильных устройств */ 
+@media (max-width: 768px) {
+    .logo-pulse h1 {
+        font-size: 2.5rem;
+    }
+    
+    .button-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .auth-buttons {
+        position: static;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+}
 /* Для кнопок в сценарии фишинга */
 .report-button:active, .trust-button:active, 
 .next-button:active, .scenario-button:active {
